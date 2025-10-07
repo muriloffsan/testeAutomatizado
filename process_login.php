@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php"; // arquivo com conexão PDO
+include "conexao.php";
 
 $email = trim($_POST['email'] ?? '');
 $senha = trim($_POST['senha'] ?? '');
@@ -23,7 +23,6 @@ if (possuiXSS($email) || possuiXSS($senha)) {
     exit;
 }
 
-// SQL seguro com prepared statements
 $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
 $stmt->execute([$email]);
 $user = $stmt->fetch();
@@ -38,4 +37,3 @@ if ($user && password_verify($senha, $user['senha'])) {
     header('Location: index.php');
 }
 exit;
-?>

@@ -34,4 +34,3 @@ if ($stmt->fetch()) {
 }
 header('Location: cadastro.php');
 exit;
-?>

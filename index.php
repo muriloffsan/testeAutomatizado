@@ -1,34 +1,39 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Login - ACME Digital</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/sweetalert2.all.min.js"></script>
-</head>
-<body>
-  <div class="container">
-    <h2>Login</h2>
-    <form id="loginForm" action="process_login.php" method="POST">
-      <input type="email" name="email" id="email" placeholder="E-mail" required>
-      <input type="password" name="senha" id="senha" placeholder="Senha" required>
-      <button type="submit" id="btn-login">Entrar</button>
-    </form>
-    <p>Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
-  </div>
+<?php
+session_start();
+include "conexao.php";
 
-  <div id="mensagem"></div>
+$email = trim($_POST['email'] ?? '');
+$senha = trim($_POST['senha'] ?? '');
 
-  <?php if (isset($_SESSION['mensagem'])): ?>
-    <script>
-      Swal.fire({
-        icon: '<?php echo $_SESSION["tipo"]; ?>',
-        title: '<?php echo $_SESSION["mensagem"]; ?>',
-        confirmButtonColor: "#3085d6",
-      });
-    </script>
-    <?php unset($_SESSION['mensagem'], $_SESSION['tipo']); ?>
-  <?php endif; ?>
-</body>
-</html>
+function possuiXSS($str) {
+    return preg_match('/<[^>]*script|onerror|onload|javascript:/i', $str);
+}
+
+if (empty($email) || empty($senha)) {
+    $_SESSION['mensagem'] = 'Preencha todos os campos!';
+    $_SESSION['tipo'] = 'warning';
+    header('Location: index.php');
+    exit;
+}
+
+if (possuiXSS($email) || possuiXSS($senha)) {
+    $_SESSION['mensagem'] = 'Input inválido detectado.';
+    $_SESSION['tipo'] = 'error';
+    header('Location: index.php');
+    exit;
+}
+
+$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->execute([$email]);
+$user = $stmt->fetch();
+
+if ($user && password_verify($senha, $user['senha'])) {
+    $_SESSION['mensagem'] = 'Login realizado com sucesso!';
+    $_SESSION['tipo'] = 'success';
+    header('Location: index.php'); 
+} else {
+    $_SESSION['mensagem'] = 'Credenciais inválidas.';
+    $_SESSION['tipo'] = 'error';
+    header('Location: index.php');
+}
+exit;

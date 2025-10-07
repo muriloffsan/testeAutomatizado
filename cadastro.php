@@ -3,9 +3,9 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro - ACME Digital</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/sweetalert2.all.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -18,17 +18,22 @@
     <p>Já possui conta? <a href="index.php">Entrar</a></p>
   </div>
 
-  <div id="mensagem"></div>
+  <!-- SweetAlert2 via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <?php if (isset($_SESSION['mensagem'])): ?>
-    <script>
-      Swal.fire({
-        icon: '<?php echo $_SESSION["tipo"]; ?>',
-        title: '<?php echo $_SESSION["mensagem"]; ?>',
-        confirmButtonColor: "#3085d6",
-      });
-    </script>
-    <?php unset($_SESSION['mensagem'], $_SESSION['tipo']); ?>
-  <?php endif; ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      <?php if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo'])): ?>
+        Swal.fire({
+          title: "<?php echo addslashes($_SESSION['mensagem']); ?>",
+          icon: "<?php echo $_SESSION['tipo']; ?>",
+          confirmButtonColor: "#00bf63",
+          timer: 3000,
+          timerProgressBar: true
+        });
+        <?php unset($_SESSION['mensagem'], $_SESSION['tipo']); ?>
+      <?php endif; ?>
+    });
+  </script>
 </body>
 </html>
