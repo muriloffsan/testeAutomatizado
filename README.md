@@ -1,7 +1,7 @@
 README.md — Projeto Login & Cadastro ACME Digital
 
 Este projeto implementa telas de login e cadastro com segurança, usabilidade e feedback visual via SweetAlert2. Também inclui testes automatizados com Selenium WebDriver.
-
+1. 
 📁 Estrutura do Projeto
 testeAutomatizado/
 │
@@ -38,7 +38,7 @@ mysql -u root -p < banco.sql
 
 Ou pelo phpMyAdmin importando banco.sql.
 
-Conteúdo do banco.sql
+Estrutura do acme_digital.sql
 CREATE DATABASE acme_digital CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 USE acme_digital;
@@ -231,7 +231,7 @@ const testesCadastro = [
 	console.log("\nRelatório final salvo em relatorio.json");
 })();
 
-  Usando Selenium IDE
+ 2. Caso use Selenium IDE
 Instalação
 
 Baixe no Chrome Web Store
