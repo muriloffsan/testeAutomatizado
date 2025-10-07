@@ -1,0 +1,37 @@
+[
+  {
+    "teste": "Login correto",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Login_correto.png"
+  },
+  {
+    "teste": "Senha incorreta",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Senha_incorreta.png"
+  },
+  {
+    "teste": "Campo email vazio",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Campo_email_vazio.png"
+  },
+  {
+    "teste": "Campo senha vazio",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Campo_senha_vazio.png"
+  },
+  {
+    "teste": "Tentativa de XSS",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Tentativa_de_XSS.png"
+  },
+  {
+    "teste": "Cadastro novo usuário",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Cadastro_novo_usurio.png"
+  },
+  {
+    "teste": "Cadastro já existente",
+    "status": "pass",
+    "screenshot": "C:\\xampp\\htdocs\\testeAutomatizado\\assets\\screenshots\\screenshot_Cadastro_j_existente.png"
+  }
+]

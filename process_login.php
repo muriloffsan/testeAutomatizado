@@ -30,7 +30,7 @@ $user = $stmt->fetch();
 if ($user && password_verify($senha, $user['senha'])) {
     $_SESSION['mensagem'] = 'Login realizado com sucesso!';
     $_SESSION['tipo'] = 'success';
-    header('Location: dashboard.php');
+    header('Location: index.php'); 
 } else {
     $_SESSION['mensagem'] = 'Credenciais inválidas.';
     $_SESSION['tipo'] = 'error';
